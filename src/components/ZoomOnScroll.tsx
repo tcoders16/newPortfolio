@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 
 const ZoomOutOnScroll = () => {
   // Tracks how far the user has scrolled in relation to the hero section
