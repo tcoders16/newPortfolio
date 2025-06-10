@@ -1,4 +1,4 @@
-import React from 'react'
+
 import ZoomOnScroll from './components/ZoomOnScroll'
 import RevealSection from './components/RevealSection'
 import FingerTracker from './components/FingerTracker'
