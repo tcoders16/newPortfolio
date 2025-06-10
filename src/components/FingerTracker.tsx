@@ -132,7 +132,7 @@ return (
       >
         <h2 style={{ fontSize: "32px", margin: 0 }} className="font-sfpro font-extrabold">Live Hand Pose</h2>
         <p style={{ fontSize: "16px", marginTop: "4px", color: "#ccc" }} className="font-sfpro font-extralight">
-          Detect real-time finger gestures using TensorFlow.js
+          Detect real-time finger gestures and navigate between components.
         </p>
       </div>
 

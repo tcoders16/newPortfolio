@@ -16,7 +16,7 @@ const RevealSection = () => {
           ${visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'}
         `}
       >
-        <div className="w-[90vw] mb-96 max-w-[1500px] px-6 py-8">
+        <div className="w-[90vw] -mt-96 max-w-[1500px] px-6 py-8">
           <div className="text-7xl font-pixel font-bold text-center text-black">
             Mobile,&nbsp;
             <span className="bg-gradient-to-r from-[#007cf0] via-[#00dfd8] to-[#7928ca] bg-clip-text text-transparent transition-colors duration-700">
@@ -36,7 +36,7 @@ const RevealSection = () => {
       </div>
 
       {/* Static image below */}
-      <div className="mt-[170vh]  flex flex-col items-center z-0 mb-96">
+      <div className="mt-[40vh]  flex flex-col items-center z-0 mb-96">
         <img
           src="/images/final5.png"
           alt="Omkumar Solanki"
