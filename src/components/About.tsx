@@ -12,7 +12,7 @@ const About = () => {
         />
 
         {/* Glass Text Overlay */}
-        <div className="absolute top-6 left-4 md:top-12 md:left-140 bg-black/50 backdrop-blur-md p-6 md:p-10 rounded-3xl max-w-xl shadow-xl z-10">
+        <div className="absolute top-6 left-4 md:top-60 md:left-140 bg-black/50 backdrop-blur-md p-6 md:p-10 rounded-3xl max-w-xl shadow-xl z-10">
           <h2 className="text-sm md:text-base uppercase tracking-widest text-gray-400 mb-2">
             About
           </h2>
