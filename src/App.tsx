@@ -3,6 +3,7 @@ import ZoomOnScroll from './components/ZoomOnScroll'
 import RevealSection from './components/RevealSection'
 import FingerTracker from './components/FingerTracker'
 import { FloatingNav } from './components/FloatingNav'
+import About from './components/About'
 
 const App = () => {
   return (
@@ -31,6 +32,9 @@ const App = () => {
           >
             <FloatingNav />
         </div>
+      </div>
+      <div>
+        <About/>
       </div>
     </div>
   )
