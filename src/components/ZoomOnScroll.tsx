@@ -1,78 +1,79 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const ZoomOutOnScroll = () => {
-  // Tracks how far the user has scrolled in relation to the hero section
   const [progress, setProgress] = useState(0);
+  const [isSticky, setIsSticky] = useState(false);
+  const nameRef = useRef<HTMLDivElement>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // This function calculates how much of the hero section has scrolled
     const onScroll = () => {
       const hero = document.getElementById('hero-section');
-      if (!hero) return;
+      if (!hero || !nameRef.current || !sentinelRef.current) return;
 
-      const rect = hero.getBoundingClientRect(); // Get position relative to viewport
+      const rect = hero.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      const rawProgress = -rect.top / viewportHeight; // Negative because scrolling down moves rect.top upward
-
-      // Clamp scroll progress between 0 and 1
+      const rawProgress = -rect.top / viewportHeight;
       const clamped = Math.min(Math.max(rawProgress, 0), 1);
       setProgress(clamped);
+
+      const sentinelTop = sentinelRef.current.getBoundingClientRect().top;
+
+      // Stick to top when scrolled past sentinel
+      if (sentinelTop <= 10) {
+        setIsSticky(true);
+      }
+
+      // Restore to normal when back down
+      if (sentinelTop > 60) {
+        setIsSticky(false);
+      }
     };
 
-    // Add scroll listener on mount
     window.addEventListener('scroll', onScroll, { passive: true });
-
-    // Cleanup on unmount
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // --- Animation calculations ---
-  const scale = 1 - progress * 0.6; // Zoom out from 1 → 0.4
-  const opacity = 1 - progress * 0.4; // Fade from 1 → 0.6
-  const textOffset = Math.max(0, 100 - progress * 140); // Text slides upward into view
+  const scale = 1 - progress * 0.6;
+  const opacity = 1 - progress * 0.4;
+  const textOffset = Math.max(0, 100 - progress * 140);
 
   return (
     <div className="relative bg-white h-[130vh] overflow-hidden">
-      {/*
-        Hero Section:
-        - Sticky container that remains pinned while user scrolls.
-        - Scales and fades as the scroll progresses.
-      */}
+      {/* Zoom-out effect */}
       <div
         id="hero-section"
         className="sticky top-0 h-screen w-screen flex items-center justify-center z-10"
         style={{
-          transform: `scale(${scale})`, // Zoom out
-          opacity,                     // Slight fade
+          transform: `scale(${scale})`,
+          opacity,
           transition: 'transform 0.5s ease-out, opacity 0.5s ease-out',
         }}
       >
-        {/*
-          Inner Black Box:
-          - Takes up the full width and height of screen initially.
-          - Centered with flex container.
-        */}
         <div
           className="absolute w-screen h-screen bg-black"
           style={{
             top: '50%',
             left: '50%',
-            transform: 'translate(-50%, -50%)', // Center it precisely
+            transform: 'translate(-50%, -50%)',
             position: 'absolute',
           }}
         />
       </div>
 
-      {/*
-        Signature Text:
-        - Starts off-screen.
-        - Slides upward into view after scrolling past the hero section.
-      */}
+      {/* Sentinel to detect when to stick and unstick */}
+      <div ref={sentinelRef} style={{ height: 1 }} />
+
+      {/* Sticky name with Apple-style glassmorphism */}
       <div
-        className="absolute top-[100vh] w-full text-center text-3xl font-signature font-bold text-gray-900"
+        ref={nameRef}
+        className={`text-3xl font-bold font-signature w-full text-center transition-all duration-700 ease-in-out ${
+          isSticky
+            ? 'fixed top-0 left-0 z-[1000] py-4 backdrop-blur-[20px] bg-white/20 dark:bg-black/20 border-b border-white/30 text-black dark:text-white shadow-lg'
+            : 'text-gray-900'
+        }`}
         style={{
-          transform: `translateY(${textOffset}%)`, // Move text upward
-          transition: 'transform 0.6s ease-out',
+          transform: isSticky ? 'translateY(0)' : `translateY(${textOffset}%)`,
         }}
       >
         Solanki Omkumar
