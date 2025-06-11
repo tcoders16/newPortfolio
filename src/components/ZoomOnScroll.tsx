@@ -65,19 +65,26 @@ const ZoomOutOnScroll = () => {
       <div ref={sentinelRef} style={{ height: 1 }} />
 
       {/* Sticky name with Apple-style glassmorphism */}
-      <div
-        ref={nameRef}
-        className={`text-3xl font-bold font-signature w-full text-center transition-all duration-700 ease-in-out ${
-          isSticky
-            ? 'fixed top-0 left-0 z-[1000] py-4 backdrop-blur-[20px] bg-white/20 dark:bg-black/20 border-b border-white/30 text-black dark:text-white shadow-lg'
-            : 'text-gray-900'
-        }`}
-        style={{
-          transform: isSticky ? 'translateY(0)' : `translateY(${textOffset}%)`,
-        }}
-      >
-        Solanki Omkumar
-      </div>
+          <div
+            ref={nameRef}
+            className={`text-3xl font-bold font-signature w-full text-center transition-all duration-700 ease-in-out
+              ${isSticky
+                ? `
+                  fixed top-0 left-0 z-[1000] py-4 px-6
+                  backdrop-blur-md
+                  bg-white/40 dark:bg-black/30
+                  border-b border-gray-300/30 dark:border-white/10
+                  text-black dark:text-white
+                  shadow-md
+                `
+                : 'text-gray-900 dark:text-black'}
+            `}
+            style={{
+              transform: isSticky ? 'translateY(0)' : `translateY(${textOffset}%)`,
+            }}
+          >
+            Solanki Omkumar
+          </div>
     </div>
   );
 };
