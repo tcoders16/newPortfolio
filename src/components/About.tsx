@@ -16,6 +16,9 @@ const About = () => {
           <h2 className="text-sm md:text-base uppercase tracking-widest text-gray-400 mb-2">
             About
           </h2>
+
+
+          
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-5">
             Vision. Precision.
           </h1>

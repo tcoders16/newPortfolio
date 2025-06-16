@@ -1,9 +1,10 @@
-
-import ZoomOnScroll from './components/ZoomOnScroll'
-import RevealSection from './components/RevealSection'
-import FingerTracker from './components/FingerTracker'
-import { FloatingNav } from './components/FloatingNav'
-import About from './components/About'
+import ZoomOnScroll from './components/ZoomOnScroll';
+import RevealSection from './components/RevealSection';
+import { FloatingNav } from './components/FloatingNav';
+import About from './components/About';
+import ContactMe from './components/ContactMe';
+import ProjectSlider from './components/ProjectSlider';
+import { projectData } from './shared/data';
 
 const App = () => {
   return (
@@ -16,28 +17,34 @@ const App = () => {
 
       {/* Main Finger Tracker area */}
       <div className="App" style={{ position: 'relative', height: '100vh' }}>
-        {/* Live hand detection and canvas */}
-        <FingerTracker />
-
-          {/* Floating Nav Bar fixed below the screen bottom */}
-          <div
-            style={{
-              position: 'fixed',
-              bottom: -200, // Increase this value to move it lower
-              left: '50%',
-              transform: 'translateX(-50%)',
-              zIndex: 1000,
-            }}
-            className="font-sfpro"
-          >
-            <FloatingNav />
+        {/* <FingerTracker /> */}
+        <div
+          style={{
+            position: 'fixed',
+            bottom: -200,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 1000,
+          }}
+          className="font-sfpro"
+        >
+          <FloatingNav />
         </div>
       </div>
+
       <div>
-        <About/>
+        <About />
+      </div>
+
+      <div>
+        <ContactMe />
+      </div>
+
+      <div>
+        <ProjectSlider projects={projectData} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
